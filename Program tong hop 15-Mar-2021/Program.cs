@@ -94,24 +94,24 @@ namespace Program_tong_hop_15_Mar_2021
                         Console.WriteLine("Vay Luong dien tieu thu trong thang cua ban la: " + LuongDienTieuThu);
 
 
-                        if (LuongDienTieuThu < 100)
+                        if (LuongDienTieuThu <= 100)
                         {
                             TienDien = LuongDienTieuThu * T1;
                             Console.WriteLine("Tien dien thang nay la: " + TienDien);
                         }
                         else if (LuongDienTieuThu > 100 && LuongDienTieuThu < 50)
                         {
-                            TienDien = 100 * T1 + (150 - 100) * T2;
+                            TienDien = (100 * T1) + ((LuongDienTieuThu - 100) * T2);
                             Console.WriteLine("Tien dien thang nay la: " + TienDien);
                         }
                         else if (LuongDienTieuThu > 150 && LuongDienTieuThu < 200)
                         {
-                            TienDien = 100 * T1 + 50 * T2 + (200 - 150) * T3;
+                            TienDien = 100 * T1 + 50 * T2 + (LuongDienTieuThu - 150) * T3;
                             Console.WriteLine("Tien dien thang nay la: " + TienDien);
                         }
                         else if (LuongDienTieuThu > 200 && LuongDienTieuThu < 300)
                         {
-                            TienDien = 100 * T1 + 50 * T2 + 50 * T3 + (300 - 200) * T4;
+                            TienDien = 100 * T1 + 50 * T2 + 50 * T3 + (LuongDienTieuThu - 200) * T4;
                             Console.WriteLine("Tien dien thang nay la: " + TienDien);
                         }
                         else if (LuongDienTieuThu > 300)
@@ -161,6 +161,7 @@ namespace Program_tong_hop_15_Mar_2021
                     }
                 default:
                     {
+                        Console.WriteLine("Ban nhap sai so!");
                         break;
                     }
             }
