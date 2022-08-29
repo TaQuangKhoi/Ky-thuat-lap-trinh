@@ -1,9 +1,110 @@
-﻿using System;
+﻿using OfficeOpenXml.FormulaParsing.Excel.Functions.Information;
+using System;
 
 namespace Program_tong_hop
 {
+    class Array2Dimension
+    {
+        static void Nhapsonguyen(out int n)
+        {
+                    Console.Write("Nhap vao so nguyen duong n");
+            do
+            {
+                n = Convert.ToInt32(Console.ReadLine());
+                if (n <= 0)
+                    Console.WriteLine("Nhap lai so nguyen duong");
+            } while (n <= 0);
+        }
+        static void Nhapmang2chieu(int[,]mang, int n)
+        {
+            for (int i = 0; i < n; i++)
+                for (int j = 0; j < n; j++)
+                {
+                    Console.Write("mang[{0},{1}]=", i, j);
+                    mang[i, j] = Convert.ToInt32(Console.ReadLine());
+                }
+        }
+        static void Xuatmang2chieu(int [,]mang, int n)
+        {
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
+                    Console.Write(mang[i, j] + "  ");
+                Console.WriteLine();
+            }
+        }
+        static int Tongphantumang(int [,]mang, int n)
+        {
+            int tong = 0;
+            for (int i = 0; i < n; i++)
+                for (int j = 0; j < n; j++)
+                    tong = tong + mang[i, j];
+            return tong;
+
+        }
+        static void Xuatphantu(int [,]mang, int n)
+        {
+            int x;
+            Console.WriteLine("Nhap x");
+            x = int.Parse(Console.ReadLine());
+            for (int i = 0; i < n; i++)
+                for (int j = 0; j < n; j++)
+                    if (mang[i, j] > 1 && mang[i, j] < x)
+                        Console.Write(mang[i, j]);
+
+        }
+        static bool Songuyento (int n)
+        {
+            if (n < 2) return false;
+            for (int i = 2; i < n; i++)
+                if (n % i == 0) return false;
+            return true;
+        }
+        static void Lietkecacsonguyento(int[,] mang, int n)
+        {
+            int tong = 0;
+            for (int i = 0; i < n; i++)
+                for (int j = 0; j < n; j++)
+                    if (Songuyento(mang[i, j]))
+                    {
+                        Console.WriteLine(mang[i, j] + " ");
+                        tong = tong + mang[i, j];
+                    }
+            Console.WriteLine("Tong cua cac so nguyen to" + tong);
+        }
+        static void duongcheochinh(int [,]mang, int n)
+        {
+            for (int i=0; i<n;i++)
+                for(int j = 0; j<n; j++)
+                    if(i ==j) Console.WriteLine(mang[i, j] + " ");
+
+        }
+        static void Main2(string[] args)
+        {
+            Console.WriteLine("");
+            int n;
+            Nhapsonguyen(out n);
+            
+            int[,] mangnguyen = new int[n, n];
+
+            Console.WriteLine("Nhap mang hai chieu");
+            Nhapmang2chieu(mangnguyen, n);
+            ////Console.WriteLine("Xuat mang hai chieu");
+            //Xuatmang2chieu(mangnguyen, n);
+            //Console.WriteLine("Tong phan tu cua mang la " + Tongphantumang(mangnguyen, n));
+            //Console.WriteLine("Xuat cac phan tu theo yeu cau");
+            //Xuatphantu(mangnguyen, n);
+            //Console.WriteLine("Cac so nguyen to trong mang");
+            //Lietkecacsonguyento(mangnguyen, n);
+            Console.WriteLine("Cac phan tu duong cheo chinh la");
+            duongcheochinh(mangnguyen, n);
+            Console.ReadLine();
+        }
+    }
+    /*
     class Program
     {
+        
         static int XuatTong(int x, int y)
         {
             int SUM;
@@ -88,33 +189,29 @@ namespace Program_tong_hop
                 days = 30;
             return days;
         }
-        static void ArrayFindMinValue(double[] Arr)
+        static void ArrayFindMinValue(double[] Arr; N)
         {
+            /*
             double min = Arr[0];
             for (int i = 1; i <= n; i++)
-            {
-                if (Ar[i] < min)
-                {
-                    min = Ar[i];
-                };
-            };
+            if (Ar[i] < min) {min = Ar[i];};
             return min;
+             */
         }
-        /*static bool KTSoNguyenTo(int n)
+        static bool CheckSoNguyenTo(int n)
         {   
-            int i;
-            if (i < n)
+            if (n == 2)
             {
-                for (i = 0; i <= n; i++)
+                Console.WriteLine($"{n} la so nguyên to.");
+            }
+            else
+            {
+                for (int i = 2; i <= n; i++)
                 {
 
                 }
             }
-            else
-            {
-
-            }
-        }*/
+        }
         static double GiaiThua(double n)
         {
             if (n == 0)
@@ -129,7 +226,7 @@ namespace Program_tong_hop
             else
                 return DQS(n - 1) + n;
         }
-        static void Main(string[] args)
+        static void Main(string[] args) // THE MAIN AREA
         {
             int c;
             for (c = 1; c <= 100; c++)
@@ -729,8 +826,7 @@ namespace Program_tong_hop
                                     }
                             }
                         }
-                    case 13: // Function (thu tuc, ham) - XuatTong
-                        {
+                    case 13: {// Function (thu tuc, ham) - XuatTong
                             Console.WriteLine("Hay Nhap so a:");
                             int a = int.Parse(Console.ReadLine());
                             Console.WriteLine("Hay Nhap so b:");
@@ -741,24 +837,22 @@ namespace Program_tong_hop
                             Console.WriteLine("Tong cua hai so do la: " + Tong);
 
                             break;
-                        }
-                    case 14:
-                        {
+                    }
+                    case 14: {
                             double A, B;
                             NhapSoThuc(out A);
                             NhapSoThuc(out B);
                             PTBacNhat(A, B);
                             break;
-                        }
-                    case 15: // Max Value
-                        {
-                            double a, b, d;
+                    }
+                    case 15: /*Max Value*/ { 
+                          double a, b, d;
                             NhapSoThuc(out a);
                             NhapSoThuc(out b);
                             NhapSoThuc(out d);
                             Console.WriteLine("Gia tri lon nhat cua cac so la: " + MaxOf_a_b_c(a, b, d));
                             break;
-                        }
+                    }
                     case 16: // Tra ve so ngay cua thang nam nhap vao tu ban phim
                         {
                             int day = 0;
@@ -778,5 +872,7 @@ namespace Program_tong_hop
                     Console.ReadKey();
             }
         }
-    }
+    }*/*/
+   
+
 }

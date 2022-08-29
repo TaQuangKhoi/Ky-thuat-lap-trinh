@@ -6,4 +6,8 @@
     <RootNamespace>Program_tong_hop</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="EPPlus.Core" Version="1.5.4" />
+  </ItemGroup>
+
 </Project>
